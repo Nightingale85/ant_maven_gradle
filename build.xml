@@ -1,10 +1,17 @@
 <?xml version="1.0" ?>
 <project name="Cookies" default="war">
 	<property name="jdk.version" value="1.8" />
+
 	<path id="compile.classpath">
 		<fileset dir="lib">
 			<include name="*.jar"/>
 		</fileset>
+	</path>
+
+	<path id="classpath.test">
+		<pathelement location="lib/junit-4.11.jar"/>
+		<pathelement location="lib/hamcrest-core-1.3.jar"/>
+		<pathelement location="build/classes"/>
 	</path>
 
 	<target name="clean">
@@ -18,6 +25,7 @@
 		<mkdir dir="build/classes/html" />
 		<mkdir dir="build/lib" />
 		<mkdir dir="build/view/view" />
+		<mkdir dir="build/test" />
 	</target>
 
 	<target name="compile" depends="init" >
@@ -36,9 +44,15 @@
 	</target>
 	<target name="test" depends="compile">
 
-		<junit printsummary="yes" haltonfailure="no">
-			<classpath refid="compile.classpath" />
-			<classpath location="src/test/java/com" />
+		<junit printsummary="on" haltonfailure="yes" fork="true">
+			<classpath>
+				<path refid="classpath.test"/>
+				<pathelement location="build/test"/>
+			</classpath>
+			<formatter type="brief" usefile="false" />
+			<batchtest>
+				<fileset dir="src/test/java" includes="**/*TestFalse.java" />
+			</batchtest>
 		</junit>
 	</target>
 
@@ -50,7 +64,6 @@
 			<lib dir="build/lib"/>
 		</war>
 	</target>
-
 
 
 </project>
