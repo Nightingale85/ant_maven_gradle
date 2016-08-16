@@ -7,6 +7,8 @@
 	<property name="test.build.dir" value="build/test"/>
 	<property name="test.src.dir" value="src/test/java"/>
 	<property name="war.dir" value="ant_war"/>
+	<property name="html.build.dir" value="build/classes/html"/>
+	<property name="main.src.dir" value="src/main/java"/>
 
 	<path id="compile.classpath">
 		<fileset dir="lib">
@@ -28,17 +30,17 @@
 	<target name="init" depends="clean">
 		<mkdir dir="${main.build.dir}"/>
 		<mkdir dir="${war.dir}" />
-		<mkdir dir="build/classes/html" />
+		<mkdir dir="${html.build.dir}" />
 		<mkdir dir="${lib.dir}" />
 		<mkdir dir="${view.build.dir}" />
 		<mkdir dir="${test.build.dir}" />
 	</target>
 
 	<target name="compile" depends="init" >
-		<javac compiler="javac1.8" target="1.8" source="1.8" destdir="${main.build.dir}"  debug="true" srcdir="src">
+		<javac compiler="javac1.8"  target="1.8" source="1.8" destdir="${main.build.dir}"  debug="true" srcdir="${main.src.dir}">
 			<classpath refid="compile.classpath"/>
 		</javac>
-		<copy todir="build/classes/html">
+		<copy todir="${html.build.dir}">
 			<fileset dir="src\main\resources\html" includes="**/*.html"/>
 		</copy>
 		<copy todir="${lib.dir}">
@@ -48,7 +50,15 @@
 			<fileset dir="src\main\webapp\view" includes="**/*.css,**/*.js,**/*.jpg,**/*.png "/>
 		</copy>
 	</target>
-	<target name="test" depends="compile">
+
+	<target name="test-compile" depends="compile">
+		<mkdir dir="${test.build.dir}"/>
+		<javac srcdir="${test.src.dir}" destdir="${test.build.dir}" includeantruntime="false">
+			<classpath refid="classpath.test"/>
+		</javac>
+	</target>
+
+	<target name="test" depends="test-compile">
 
 		<junit printsummary="on" haltonfailure="yes" fork="true">
 			<classpath>
@@ -62,8 +72,10 @@
 		</junit>
 	</target>
 
+
+
 	<target name="war" depends="test">
-		<war destfile="ant_war/cookies.war" webxml="src/main/webapp/WEB-INF/web.xml">
+		<war destfile="ant_war/cookies.war" excludes="**/*TestFalse.class" webxml="src/main/webapp/WEB-INF/web.xml">
 
 			<classes dir="${main.build.dir}"/>
 			<fileset  dir="build/view" includes="**/*.css,**/*.js,**/*.jpg,**/*.png"/>
