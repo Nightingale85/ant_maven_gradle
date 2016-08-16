@@ -1,13 +1,13 @@
 <?xml version="1.0" ?>
 <project name="Cookies" default="war">
 	<property name="jdk.version" value="1.8" />
-	<property name="main.build.dir" value="build/classes"/>
-	<property name="lib.dir" value="build/lib"/>
-	<property name="view.build.dir" value="build/view/view"/>
-	<property name="test.build.dir" value="build/test"/>
+	<property name="main.build.dir" value="ant_build/classes"/>
+	<property name="lib.dir" value="ant_build/lib"/>
+	<property name="view.build.dir" value="ant_build/view/view"/>
+	<property name="test.build.dir" value="ant_build/test"/>
 	<property name="test.src.dir" value="src/test/java"/>
 	<property name="war.dir" value="ant_war"/>
-	<property name="html.build.dir" value="build/classes/html"/>
+	<property name="html.build.dir" value="ant_build/classes/html"/>
 	<property name="main.src.dir" value="src/main/java"/>
 
 	<path id="compile.classpath">
@@ -24,7 +24,7 @@
 
 	<target name="clean">
 		<delete dir="${war.dir}" />
-		<delete dir="build" />
+		<delete dir="ant_build" />
 	</target>
 
 	<target name="init" depends="clean">
@@ -78,7 +78,7 @@
 		<war destfile="ant_war/cookies.war" excludes="**/*TestFalse.class" webxml="src/main/webapp/WEB-INF/web.xml">
 
 			<classes dir="${main.build.dir}"/>
-			<fileset  dir="build/view" includes="**/*.css,**/*.js,**/*.jpg,**/*.png"/>
+			<fileset  dir="ant_build/view" includes="**/*.css,**/*.js,**/*.jpg,**/*.png"/>
 			<lib dir="${lib.dir}"/>
 		</war>
 	</target>
