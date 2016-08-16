@@ -1,5 +1,7 @@
 <?xml version="1.0" ?>
 <project name="Cookies" default="war">
+
+	
 	<property name="jdk.version" value="1.8" />
 	<property name="main.build.dir" value="ant_build/classes"/>
 	<property name="lib.dir" value="ant_build/lib"/>
@@ -10,11 +12,13 @@
 	<property name="html.build.dir" value="ant_build/classes/html"/>
 	<property name="main.src.dir" value="src/main/java"/>
 
+
 	<path id="compile.classpath">
 		<fileset dir="lib">
 			<include name="*.jar"/>
 		</fileset>
 	</path>
+
 
 	<path id="classpath.test">
 		<pathelement location="lib/junit-4.11.jar"/>
@@ -22,10 +26,12 @@
 		<pathelement location="${main.build.dir}"/>
 	</path>
 
+
 	<target name="clean">
 		<delete dir="${war.dir}" />
 		<delete dir="ant_build" />
 	</target>
+
 
 	<target name="init" depends="clean">
 		<mkdir dir="${main.build.dir}"/>
@@ -35,6 +41,7 @@
 		<mkdir dir="${view.build.dir}" />
 		<mkdir dir="${test.build.dir}" />
 	</target>
+
 
 	<target name="compile" depends="init" >
 		<javac compiler="javac1.8"  target="1.8" source="1.8" destdir="${main.build.dir}"  debug="true" srcdir="${main.src.dir}">
@@ -51,12 +58,14 @@
 		</copy>
 	</target>
 
+
 	<target name="test-compile" depends="compile">
 		<mkdir dir="${test.build.dir}"/>
 		<javac srcdir="${test.src.dir}" destdir="${test.build.dir}" includeantruntime="false">
 			<classpath refid="classpath.test"/>
 		</javac>
 	</target>
+
 
 	<target name="test" depends="test-compile">
 
