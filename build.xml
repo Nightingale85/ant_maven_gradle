@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <project name="Cookies" default="war">
 
-	
+
 	<property name="jdk.version" value="1.8" />
 	<property name="main.build.dir" value="ant_build/classes"/>
 	<property name="lib.dir" value="ant_build/lib"/>
@@ -48,13 +48,13 @@
 			<classpath refid="compile.classpath"/>
 		</javac>
 		<copy todir="${html.build.dir}">
-			<fileset dir="src\main\resources\html" includes="**/*.html"/>
+			<fileset dir="src\main\resources\html" includes="**/*.html, **/*.jsp"/>
 		</copy>
 		<copy todir="${lib.dir}">
 			<fileset dir="lib" excludes="hamcrest-core-1.3.jar, junit-4.11.jar" includes="**/*.jar "/>
 		</copy>
 		<copy todir="${view.build.dir}">
-			<fileset dir="src\main\webapp\view" includes="**/*.css,**/*.js,**/*.jpg,**/*.png "/>
+			<fileset dir="src\main\webapp\view" includes="**/*.css,**/*.js,**/*.jpg,**/*.png,**/*.gif"/>
 		</copy>
 	</target>
 
@@ -87,7 +87,7 @@
 		<war destfile="ant_war/cookies.war" excludes="**/*TestFalse.class" webxml="src/main/webapp/WEB-INF/web.xml">
 
 			<classes dir="${main.build.dir}"/>
-			<fileset  dir="ant_build/view" includes="**/*.css,**/*.js,**/*.jpg,**/*.png"/>
+			<fileset  dir="ant_build/view" includes="**/*.css,**/*.js,**/*.jpg,**/*.png,**/*.gif"/>
 			<lib dir="${lib.dir}"/>
 		</war>
 	</target>

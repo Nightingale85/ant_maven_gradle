@@ -42,7 +42,7 @@ public class RegistrationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/classes/html/registration.html");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/classes/html/registration.jsp");
         try {
             dispatcher.forward(req, resp);
         } catch (ServletException |IOException e) {

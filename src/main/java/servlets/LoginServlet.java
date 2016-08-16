@@ -41,7 +41,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/classes/html/login.html");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/classes/html/login.jsp");
         try {
             dispatcher.forward(req, resp);
         } catch (ServletException |IOException e) {

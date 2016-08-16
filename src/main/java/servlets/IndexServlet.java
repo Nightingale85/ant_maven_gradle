@@ -44,7 +44,7 @@ public class IndexServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)  {
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/classes/html/index.html");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/classes/html/index1.jsp");
         try {
             dispatcher.forward(req, resp);
         } catch (ServletException |IOException e) {

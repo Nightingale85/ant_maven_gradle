@@ -1,26 +1,33 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <head>
    <meta charset="utf-8">
    <title>Slick Login</title>
-   <link rel="stylesheet" type="text/webapp.view.css" href="/view/css/login.css" />
-   <link rel="stylesheet" type="text/webapp.view.css" href="/view/css/tooltip.css" />
-   <script src="/view/js/jquery-2.2.3.js"></script>
-   <script src="/view/js/reg.js"></script>
-   <script src="/view/js/ajaxreg.js"></script>
-   <script src="/view/js/jquery.cookie.js"></script>
+   <link rel="stylesheet" type="text/css" href="/cookies/view/css/login.css" />
+   <link rel="stylesheet" type="text/css" href="/cookies/view/css/tooltip.css" />
+   <script src="/cookies/view/js/jquery-2.2.3.js"></script>
+   <script src="/cookies/view/js/reg.js"></script>
+   <script src="/cookies/view/js/ajaxreg.js"></script>
+   <script src="/cookies/view/js/jquery.cookie.js"></script>
 </head>
 <body>
    <header>
-      <a class="main" href="../index">
+      <a class="main" href="../cookies/index">
          <h1 id="slogan">Taste our cookies and become a bit happier</h1>
          <span>Go to home page</span>
       </a>
-      <img id="logo"src="/view/img/irb3.gif">
+      <img id="logo"src="/cookies/veiw/img/irb3.gif">
       </img>
+      <%
+      String nick = (String) session.getAttribute("nick");
+      if (nick != null)
+      out.print("<h4 id='session'>You logged as <span>" +
+                    nick +"</span> <a href='../admin'>admin panel</a>  <a href='../cookies/logout'>logout</a></h4>");
+      %>
    </header>
    <div id = "regsuccess"></div>
    <form id="slick-login">
-      <img id= "anim" src="/view/img/reg.jpg">
+      <img id= "anim" src="/cookies/view/img/reg.jpg">
       <h3>Registration form</h3>
       <div class="errors">
       </div>
