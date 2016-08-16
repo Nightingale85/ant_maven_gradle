@@ -16,7 +16,7 @@
          <h1 id="slogan">Taste our cookies and become a bit happier</h1>
          <span>Go to home page</span>
       </a>
-      <img id="logo"src="/cookies/view/img/irb3.gif">
+      <img id="logo"src="/cookies/veiw/img/irb3.gif">
       </img>
       <%
       String nick = (String) session.getAttribute("nick");
