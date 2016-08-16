@@ -1,6 +1,12 @@
 <?xml version="1.0" ?>
 <project name="Cookies" default="war">
 	<property name="jdk.version" value="1.8" />
+	<property name="main.build.dir" value="build/classes"/>
+	<property name="lib.dir" value="build/lib"/>
+	<property name="view.build.dir" value="build/view/view"/>
+	<property name="test.build.dir" value="build/test"/>
+	<property name="test.src.dir" value="src/test/java"/>
+	<property name="war.dir" value="ant_war"/>
 
 	<path id="compile.classpath">
 		<fileset dir="lib">
@@ -11,34 +17,34 @@
 	<path id="classpath.test">
 		<pathelement location="lib/junit-4.11.jar"/>
 		<pathelement location="lib/hamcrest-core-1.3.jar"/>
-		<pathelement location="build/classes"/>
+		<pathelement location="${main.build.dir}"/>
 	</path>
 
 	<target name="clean">
-		<delete dir="ant_war" />
+		<delete dir="${war.dir}" />
 		<delete dir="build" />
 	</target>
 
 	<target name="init" depends="clean">
-		<mkdir dir="build/classes"/>
-		<mkdir dir="ant_war" />
+		<mkdir dir="${main.build.dir}"/>
+		<mkdir dir="${war.dir}" />
 		<mkdir dir="build/classes/html" />
-		<mkdir dir="build/lib" />
-		<mkdir dir="build/view/view" />
-		<mkdir dir="build/test" />
+		<mkdir dir="${lib.dir}" />
+		<mkdir dir="${view.build.dir}" />
+		<mkdir dir="${test.build.dir}" />
 	</target>
 
 	<target name="compile" depends="init" >
-		<javac compiler="javac1.8" target="1.8" source="1.8" destdir="build/classes"  debug="true" srcdir="src">
+		<javac compiler="javac1.8" target="1.8" source="1.8" destdir="${main.build.dir}"  debug="true" srcdir="src">
 			<classpath refid="compile.classpath"/>
 		</javac>
 		<copy todir="build/classes/html">
 			<fileset dir="src\main\resources\html" includes="**/*.html"/>
 		</copy>
-		<copy todir="build/lib">
+		<copy todir="${lib.dir}">
 			<fileset dir="lib" excludes="hamcrest-core-1.3.jar, junit-4.11.jar" includes="**/*.jar "/>
 		</copy>
-		<copy todir="build/view/view">
+		<copy todir="${view.build.dir}">
 			<fileset dir="src\main\webapp\view" includes="**/*.css,**/*.js,**/*.jpg,**/*.png "/>
 		</copy>
 	</target>
@@ -47,11 +53,11 @@
 		<junit printsummary="on" haltonfailure="yes" fork="true">
 			<classpath>
 				<path refid="classpath.test"/>
-				<pathelement location="build/test"/>
+				<pathelement location="${test.build.dir}"/>
 			</classpath>
 			<formatter type="brief" usefile="false" />
 			<batchtest>
-				<fileset dir="src/test/java" includes="**/*TestFalse.java" />
+				<fileset dir="${test.src.dir}" includes="**/*TestFalse.java" />
 			</batchtest>
 		</junit>
 	</target>
@@ -59,9 +65,9 @@
 	<target name="war" depends="test">
 		<war destfile="ant_war/cookies.war" webxml="src/main/webapp/WEB-INF/web.xml">
 
-			<classes dir="build/classes"/>
+			<classes dir="${main.build.dir}"/>
 			<fileset  dir="build/view" includes="**/*.css,**/*.js,**/*.jpg,**/*.png"/>
-			<lib dir="build/lib"/>
+			<lib dir="${lib.dir}"/>
 		</war>
 	</target>
 
