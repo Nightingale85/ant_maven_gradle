@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<project name="Cookies" default="war">
+	<property name="jdk.version" value="1.8" />
+	<path id="compile.classpath">
+		<fileset dir="lib">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+
+	<target name="clean">
+		<delete dir="ant_war" />
+		<delete dir="build" />
+	</target>
+
+	<target name="init" depends="clean">
+		<mkdir dir="build/classes"/>
+		<mkdir dir="ant_war" />
+		<mkdir dir="build/classes/html" />
+		<mkdir dir="build/lib" />
+		<mkdir dir="build/view/view" />
+	</target>
+
+	<target name="compile" depends="init" >
+		<javac compiler="javac1.8" target="1.8" source="1.8" destdir="build/classes"  debug="true" srcdir="src">
+			<classpath refid="compile.classpath"/>
+		</javac>
+		<copy todir="build/classes/html">
+			<fileset dir="src\main\resources\html" includes="**/*.html"/>
+		</copy>
+		<copy todir="build/lib">
+			<fileset dir="lib" excludes="hamcrest-core-1.3.jar, junit-4.11.jar" includes="**/*.jar "/>
+		</copy>
+		<copy todir="build/view/view">
+			<fileset dir="src\main\webapp\view" includes="**/*.css,**/*.js,**/*.jpg,**/*.png "/>
+		</copy>
+	</target>
+	<target name="test" depends="compile">
+
+		<junit printsummary="yes" haltonfailure="no">
+			<classpath refid="compile.classpath" />
+			<classpath location="src/test/java/com" />
+		</junit>
+	</target>
+
+	<target name="war" depends="test">
+		<war destfile="ant_war/cookies.war" webxml="src/main/webapp/WEB-INF/web.xml">
+
+			<classes dir="build/classes"/>
+			<fileset  dir="build/view" includes="**/*.css,**/*.js,**/*.jpg,**/*.png"/>
+			<lib dir="build/lib"/>
+		</war>
+	</target>
+
+
+
+</project>
