@@ -4,7 +4,8 @@
 ***                                                         ***
 ***************************************************************
 
-Run 'ant war' (without quotes).
+Run 'ant war' (all commands should be executed in the directory 
+"ant_maven_gradle").
 Tests are included.
 _________________________________________________________
 
