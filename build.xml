@@ -11,8 +11,9 @@
 	<property name="war.dir" value="ant_war"/>
 	<property name="html.build.dir" value="ant_build/classes/html"/>
 	<property name="main.src.dir" value="src/main/java"/>
-	<!--<property name="deploy.dir" value="C:\apache-tomcat-7.0.70\webapps"/>-->
-	<!--<property name="home.dir" value="D:\Lam\homework3\ant_maven_gradle"/>-->
+
+	<!--<property name="deploy.dir" value="C:\apache-tomcat-7.0.70\webapps"/> -->
+	<!--<property name="home.dir" value="D:\Lam\homework3\ant_maven_gradle"/>  -->
 
 
 	<path id="compile.classpath">
