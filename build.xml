@@ -11,6 +11,8 @@
 	<property name="war.dir" value="ant_war"/>
 	<property name="html.build.dir" value="ant_build/classes/html"/>
 	<property name="main.src.dir" value="src/main/java"/>
+	<!--<property name="deploy.dir" value="C:\apache-tomcat-7.0.70\webapps"/>-->
+	<!--<property name="home.dir" value="D:\Lam\homework3\ant_maven_gradle"/>-->
 
 
 	<path id="compile.classpath">
@@ -85,12 +87,23 @@
 
 	<target name="war" depends="test">
 		<war destfile="ant_war/cookies.war" excludes="**/*TestFalse.class" webxml="src/main/webapp/WEB-INF/web.xml">
-
 			<classes dir="${main.build.dir}"/>
 			<fileset  dir="ant_build/view" includes="**/*.css,**/*.js,**/*.jpg,**/*.png,**/*.gif"/>
 			<lib dir="${lib.dir}"/>
 		</war>
 	</target>
 
+
+	<!--<target name="deploy" depends="war">-->
+		<!--<copy todir="${deploy.dir}">-->
+			<!--<fileset dir="${war.dir}">-->
+				<!--<include name="*.war"/>-->
+			<!--</fileset>-->
+		<!--</copy>-->
+		<!--<sound>-->
+			<!--<success source="${home.dir}/sounds/success.wav"/>-->
+			<!--<fail source="${home.dir}/sounds/fail.wav"/>-->
+		<!--</sound>-->
+	<!--</target>-->
 
 </project>
