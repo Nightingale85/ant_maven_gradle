@@ -7,6 +7,7 @@
 Run 'ant war' (all commands should be executed in the directory 
 "ant_maven_gradle").
 Tests are included.
+War file is in "ant_war" directory
 _________________________________________________________
 
 1) To deploy project to Tomcat uncomment and edit two last 
@@ -27,6 +28,7 @@ b - edit 'home.dir' value (absolute path to the project
 
 Run 'gradle clean build' (without quotes).
 Tests are included.
+War file is in "ant_war" directory
 
 ***************************************************************
 ***                                                         ***
