@@ -28,7 +28,7 @@ b - edit 'home.dir' value (absolute path to the project
 
 Run 'gradle clean build' (without quotes).
 Tests are included.
-War file is in "ant_war" directory
+War file is in "build\libs" directory
 
 ***************************************************************
 ***                                                         ***
@@ -38,6 +38,7 @@ War file is in "ant_war" directory
 
 Run 'mvn clean install' (without quotes).
 Tests are included.
+War file is in "maven_war" directory
 
 
       2016 Solovyov Systems. All rights reserved. For all issues contact Sergiy_Solovyov@epam.com
